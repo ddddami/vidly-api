@@ -9,4 +9,5 @@ class Movie(models.Model):
     _id = models.CharField(max_length=255, unique=True, primary_key=True, editable=False)
     title = models.CharField(max_length=255)
     number_in_stock = models.PositiveSmallIntegerField()
-    daily_rental_rate = models.DecimalField(decimal_places=1, max_digits=2)  
+    daily_rental_rate = models.DecimalField(decimal_places=1, max_digits=2)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
