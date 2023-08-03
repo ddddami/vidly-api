@@ -10,6 +10,7 @@ packages = [{include = "vidly_api"}]
 python = "^3.11"
 django = "^4.2.4"
 mysqlclient = "^2.2.0"
+djangorestframework = "^3.14.0"
 
 
 [build-system]
