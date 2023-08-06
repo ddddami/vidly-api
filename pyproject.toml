@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Damilola Osunsanwo <oluwadamilola013@gmail.com>"]
 readme = "README.md"
-packages = [{include = "vidly_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
