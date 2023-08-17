@@ -10,16 +10,19 @@ class GenreSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     numberInStock = serializers.IntegerField(source='number_in_stock')
-    dailyRentalRate = serializers.DecimalField(decimal_places=1, max_digits=2, source='daily_rental_rate')
+    dailyRentalRate = serializers.DecimalField(
+        decimal_places=1, max_digits=2, source='daily_rental_rate')
     genre = GenreSerializer(read_only=True)
-    genre_id = serializers.CharField()
+    genreId = serializers.CharField(source='genre_id')
+
     class Meta:
         model = Movie
-        fields = ['_id', 'title', 'genre','numberInStock', 'dailyRentalRate', 'genre_id']
+        fields = ['_id', 'title', 'genre',
+                  'numberInStock', 'dailyRentalRate', 'genreId']
 
-    def update(self, instance, validated_data):
-        genre_id = validated_data.pop('genre_id')
-        genre = Genre.objects.get(pk=genre_id)
-        instance.genre = genre
-        instance.save()
-        return instance
+    # def update(self, instance, validated_data):
+    #     genre_id = validated_data.pop('genre_id')
+    #     genre = Genre.objects.get(pk=genre_id)
+    #     instance.genre = genre
+    #     super().update(instance, validated_data)
+    #     return instance
