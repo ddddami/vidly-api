@@ -1,5 +1,27 @@
 from rest_framework import serializers
+from djoser.serializers import UserSerializer as BaseUserSerializer, UserCreateSerializer
+from djoser.conf import settings
 from .models import Genre, Movie
+from django.contrib.auth import get_user_model
+from djoser.conf import settings
+
+User = get_user_model()
+
+
+class UserSerializer(BaseUserSerializer):
+    isAdmin = serializers.BooleanField(source='is_staff', read_only=True)
+    name = serializers.CharField(source='first_name')
+
+    class Meta(BaseUserSerializer.Meta):
+        fields = ['id', 'username',
+                  'name', 'isAdmin']
+
+
+class UserCreateSerializer(UserCreateSerializer):
+    name = serializers.CharField(source='first_name')
+
+    class Meta(UserCreateSerializer.Meta):
+        fields = ('username', 'password', 'name',)
 
 
 class GenreSerializer(serializers.ModelSerializer):
