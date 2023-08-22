@@ -5,7 +5,7 @@ from uuid import uuid4
 
 class Genre(models.Model):
     _id = models.CharField(max_length=255, unique=True,
-                           primary_key=True, editable=False)
+                           primary_key=True, editable=False,  default=uuid4)
     name = models.CharField(max_length=255)
 
 
